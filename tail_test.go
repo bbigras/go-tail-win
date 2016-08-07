@@ -148,7 +148,7 @@ func TestChose1(t *testing.T) {
 	expect := genSlice(min, max)
 
 	if !reflect.DeepEqual(resultat, expect) {
-		t.Fail()
+		t.Fatalf("resultat != expect\nresultat: %#v\nexpect: %#v", resultat, expect)
 	}
 }
 
@@ -178,7 +178,7 @@ func TestChose2(t *testing.T) {
 	expect := genSlice(min, max)
 
 	if !reflect.DeepEqual(resultat, expect) {
-		t.Fail()
+		t.Fatalf("resultat != expect\nresultat: %#v\nexpect: %#v", resultat, expect)
 	}
 }
 
@@ -206,7 +206,7 @@ func TestChose3(t *testing.T) {
 	expect := genSlice(min, max)
 
 	if !reflect.DeepEqual(resultat, expect) {
-		t.Fail()
+		t.Fatalf("resultat != expect\nresultat: %#v\nexpect: %#v", resultat, expect)
 	}
 }
 
@@ -234,6 +234,6 @@ func TestChose4(t *testing.T) {
 	expect := genSlice(min, max)
 
 	if !reflect.DeepEqual(resultat, expect) {
-		t.Fail()
+		t.Fatalf("resultat != expect\nresultat: %#v\nexpect: %#v", resultat, expect)
 	}
 }

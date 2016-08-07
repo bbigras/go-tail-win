@@ -1,6 +1,5 @@
 // Package tail behaves like tail
 //
-//
 // Example
 //    package main
 //
@@ -22,7 +21,6 @@
 //			}
 //		}
 //    }
-
 package tail
 
 import (

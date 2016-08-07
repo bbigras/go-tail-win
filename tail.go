@@ -1,3 +1,28 @@
+// Package tail behaves like tail
+//
+//
+// Example
+//    package main
+//
+//    import (
+//		"fmt"
+//		"github.com/brunoqc/go-tail-win"
+//    )
+//
+//    func main() {
+//		t, err := tail.TailFile(filePath)
+//		if err != nil {
+//			return err
+//		}
+//
+//		for {
+//			select {
+//			case line := <-t.Lines:
+//				fmt.Printf("> %q\n", line)
+//			}
+//		}
+//    }
+
 package tail
 
 import (

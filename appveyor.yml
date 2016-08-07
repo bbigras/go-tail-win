@@ -1,3 +1,5 @@
+clone_folder: c:\gopath\src\github.com\brunoqc\go-tail-win
+
 environment:
   GOPATH: c:\gopath
 

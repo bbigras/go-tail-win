@@ -8,7 +8,10 @@ import (
 	"reflect"
 	"testing"
 	"time"
+	"flag"
 )
+
+var tmpDir string
 
 func faitLe(lePath string, chFinGen chan struct{}, chResultat chan []string, chWatchFait chan struct{}) {
 	defer close(chResultat)
@@ -106,8 +109,23 @@ func genSlice(min, max int) []string {
 	return resultat
 }
 
+func TestMain(m *testing.M) {
+	flag.Parse()
+
+	tmpDir = os.Getenv("TMP")
+	if tmpDir == "" {
+		tmpDir = "c:\\tmp"
+	}
+	if err := os.MkdirAll(tmpDir, 0777); err != nil {
+		log.Fatalf("error creating %q: %s", tmpDir, err)
+	}
+	fmt.Println("tmpDir", tmpDir)
+	
+	os.Exit(m.Run())
+}
+
 func TestChose1(t *testing.T) {
-	lePath := filepath.Join(os.Getenv("TMP"), "test-tail1")
+	lePath := filepath.Join(tmpDir, "test-tail1")
 	defer os.Remove(lePath)
 
 	touch(lePath)
@@ -135,8 +153,8 @@ func TestChose1(t *testing.T) {
 }
 
 func TestChose2(t *testing.T) {
-	lePath := filepath.Join(os.Getenv("TMP"), "test-tail2")
-	// lePath := filepath.Join(os.Getenv("TMP"), "chose")
+	lePath := filepath.Join(tmpDir, "test-tail2")
+	// lePath := filepath.Join(tmpDir, "chose")
 	// lePath := "d:\\test\\chose"
 	defer os.Remove(lePath)
 
@@ -165,7 +183,7 @@ func TestChose2(t *testing.T) {
 }
 
 func TestChose3(t *testing.T) {
-	lePath := filepath.Join(os.Getenv("TMP"), "test-tail3")
+	lePath := filepath.Join(tmpDir, "test-tail3")
 	defer os.Remove(lePath)
 
 	touch(lePath)
@@ -193,7 +211,7 @@ func TestChose3(t *testing.T) {
 }
 
 func TestChose4(t *testing.T) {
-	lePath := filepath.Join(os.Getenv("TMP"), "test-tail4")
+	lePath := filepath.Join(tmpDir, "test-tail4")
 	defer os.Remove(lePath)
 
 	touch(lePath)

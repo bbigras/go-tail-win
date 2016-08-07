@@ -18,14 +18,11 @@ import (
 func main() {
     t, err := tail.TailFile(filePath)
 	if err != nil {
-		return err
+		panic(err)
 	}
 
-	for {
-		select {
-		case line := <-t.Lines:
-			fmt.Printf("> %q\n", line)
-		}
+	for line := range t.Lines {
+        fmt.Printf("> %q\n", line)
 	}
 }
 ```

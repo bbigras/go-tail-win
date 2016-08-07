@@ -11,6 +11,7 @@ import (
 	"runtime/debug"
 	"sync"
 	"syscall"
+	"time"
 
 	"github.com/ActiveState/tail/winfile"
 	"gopkg.in/fsnotify.v1"
@@ -186,6 +187,7 @@ func TailFile(path string) (*tail, error) {
 					} else {
 						log.Printf("erreur: %T %s", err, err)
 					}
+					time.Sleep(1 * time.Second)
 				}
 				rotated = r
 			}

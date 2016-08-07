@@ -1,2 +1,8 @@
+environment:
+  GOPATH: c:\gopath
+
+install:
+  - go get -v -t ./...
+
 build_script:
   - go test -v ./...

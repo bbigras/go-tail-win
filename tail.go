@@ -20,8 +20,8 @@ import (
 type typeModif uint32
 
 const (
-	Write typeModif = 1 << iota
-	Rename
+	write typeModif = 1 << iota
+	rename
 )
 
 type tail struct {
@@ -87,7 +87,7 @@ func openAndFollow(path string, ch chan<- string, chModif <-chan typeModif, aRot
 			return false, errors.New("chan fermé")
 		}
 
-		if v == Rename {
+		if v == rename {
 			rotation = true
 			log.Println("rotation!")
 		}
@@ -124,9 +124,9 @@ func checkModifLog(path string, rep *tail) <-chan typeModif {
 			case event := <-watcher.Events:
 				if event.Name == path {
 					if event.Op&fsnotify.Write == fsnotify.Write {
-						chModif <- Write
+						chModif <- write
 					} else if event.Op&fsnotify.Rename == fsnotify.Rename {
-						chModif <- Rename
+						chModif <- rename
 					}
 				}
 			case err := <-watcher.Errors:
